@@ -1,6 +1,6 @@
 {
   "name": "botmaster-enrich",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A standardized way to make your bot context-aware. It exposes an API for enrichers which are procedures you can run to add variables to the context before sending to an NLU processor like Watson Conversation, LUIS or API.ai",
   "main": "index.js",
   "scripts": {
