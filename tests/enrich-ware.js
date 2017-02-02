@@ -1,4 +1,4 @@
-const {enrichIncomingWare} = require('../enrich-incoming-ware');
+const {EnrichIncomingWare} = require('../');
 require('should');
 
 describe('enrich incoming ware', () => {
@@ -9,14 +9,15 @@ describe('enrich incoming ware', () => {
                 controller: () => ({greeting: 'hi'})
             }
         };
-        const ware = enrichIncomingWare({enrichers});
+        const ware = EnrichIncomingWare({enrichers});
         const update = {context: {}};
         const bot = {type: 'not a real bot'};
         ware(
-            update,
             bot,
+            update,
             (err) => {
                 if (err) return done(err);
+                console.log(update);
                 update.context.greeting.should.equal('hi');
                 done();
             }

@@ -17,7 +17,7 @@ Enrich conversation contexts
 ## with botmaster
 
 ```js
-const {enrichIncomingWare} = require('botmaster-enrich');
+const {EnrichIncomingWare} = require('botmaster-enrich');
 const Botmaster = require('botmaster');
 const botmasterSettings = require('./myBotmasterSettings');
 
@@ -28,7 +28,7 @@ const enrichers = {
 };
 
 const botmaster = new Botmaster(botmasterSettings);
-botmaster.use('incoming', enrichIncomingWare({enrichers}));
+botmaster.use('incoming', EnrichIncomingWare({enrichers}));
 ```
 ## Standalone
 

@@ -1,5 +1,5 @@
-require('should');
-const Enrich = require('../Enrich');
+const should = require('should');
+const {Enrich} = require('../');
 
 describe('enrich', () => {
     let enrich;
@@ -20,7 +20,8 @@ describe('enrich', () => {
         });
     });
 
-    describe('enrichers on returns', done => {
+    describe('enrichers on returns', () => {
+
         it('should work with sync return style', done => {
             const enrichers = {
                 hi: {

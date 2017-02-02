@@ -64,4 +64,4 @@ const Enrich = (params = {}) => {
     };
 };
 
-module.exports = Enrich;
+module.exports = {Enrich};

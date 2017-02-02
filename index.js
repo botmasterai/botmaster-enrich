@@ -1,7 +1,8 @@
-const Enrich = require('./Enrich');
-const {enrichIncomingWare} = require('./enrich-incoming-ware');
+const {Enrich} = require('./Enrich');
+const {EnrichIncomingWare} = require('./EnrichIncomingWare');
 
 module.exports = {
-    enrichIncomingWare,
+    EnrichIncomingWare,
+    Incoming: EnrichIncomingWare,
     Enrich
 };
