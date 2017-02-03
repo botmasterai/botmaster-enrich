@@ -10,12 +10,12 @@ const {Enrich} = require('./Enrich');
  * @param  {Object} [params] optional additional params to pass to enrichers
  * @return {Function} botmaster middleware
  */
-const EnrichIncomingWare = ({enrichers, sessionPath = 'context', params = {}}) =>
-    (bot, update, next) => {
+const EnrichIncomingWare = ({enrichers, sessionPath = 'context', params = {}}) => {
+    sessionPath = sessionPath.split('.');
+    return (bot, update, next) => {
         params.bot = bot;
         params.update = update;
         const enrich = Enrich(params);
-        sessionPath = sessionPath.split('.');
         const lensContext = R.lensPath(sessionPath);
         const oldContext = R.compose(
             R.defaultTo({}),
@@ -37,5 +37,6 @@ const EnrichIncomingWare = ({enrichers, sessionPath = 'context', params = {}}) =
             }
         });
     };
+};
 
 module.exports = {EnrichIncomingWare};
