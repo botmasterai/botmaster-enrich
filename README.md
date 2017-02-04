@@ -1,8 +1,12 @@
-Enrich conversation contexts
+[![Build Status](https://travis-ci.org/botmasterai/botmaster-enrich.svg?branch=master)](https://travis-ci.org/botmasterai/botmaster-enrich)
 
-# Introduction
+# Enrich NLU contexts
 
--   similar API to 'fulfill' function
+Battle-tested middleware for botmaster <http://botmasterai.com/>).
+
+## Introduction
+
+-   similar API to 'fulfill' middleware
 -   allows caching of responses
 -   manages merging
 -   stuff anything else you need in your enrichers in params
@@ -13,9 +17,9 @@ Enrich conversation contexts
 -   Scrapping websites for hours or telephone numbers to provide to bot
 -   Validating user input
 
-## Usage
+## Usase
 
-## with botmaster
+### with botmaster
 
 ```js
 const {EnrichIncomingWare} = require('botmaster-enrich');
@@ -32,7 +36,7 @@ const botmaster = new Botmaster(botmasterSettings);
 botmaster.use('incoming', EnrichIncomingWare({enrichers}));
 ```
 
-## Standalone
+### Standalone
 
 ```js
 const {Enrich} = require('botmaster-enrich');
@@ -49,11 +53,11 @@ enrich(enrichers, context, (err, result) => {
 });
 ```
 
-# API
+## API
 
-## Enricher
+### Enricher
 
-### Enricher Spec
+#### Enricher Spec
 
 The enricher spec is an object that describes an enricher
 
@@ -63,7 +67,7 @@ The enricher spec is an object that describes an enricher
 | cache      | Boolean whether or not to cache the result                                                                                                                                                            |
 | ttl        | Integer if caching how long the result should stay cached in milliseconds                                                                                                                             |
 
-### Enricher controller params
+#### Enricher controller params
 
 The following properties are available in `params`.
 
@@ -72,7 +76,39 @@ The following properties are available in `params`.
 | update    | in botmaster the update is provided |
 | bot       | in botmaster the bot is provided    |
 
-## Botmaster Ware
+### Botmaster Ware
+
+#### Enrich
+
+Run the given enrichers with context and update the given old context. Return using the callback.
+
+**Parameters**
+
+-   `enrichers` **object** an object where key is the name of the enricher and the value is the enricher object which must specifiy controller
+-   `context` **object** an object that is provided to the enrichers as way for users to provide extra functions or context to their enricher controllers
+-   `oldContext` **object** the context to enrich
+-   `callback` **function** the callback to return error or new context (object).
+-   `params`   (optional, default `{}`)
+
+#### EnrichIncomingWare
+
+Factory function to generate incoming ware for enrich
+
+**Parameters**
+
+-   `enrichers` **Object** an object of enrichers
+-   `sessionPath` **[String]** dot denoted path find the context in the update. defaults to 'context'
+-   `params` **[Object]** optional additional params to pass to enrichers
+-   `$0`  
+    -   `$0.enrichers`  
+    -   `$0.sessionPath`  
+    -   `$0.params`  
+
+Returns **Function** botmaster middleware
+
+#### listFromObject
+
+Turn an object into a list by taking the key and putting it into subobjects using propname
 
 ### Enrich
 
