@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/botmasterai/botmaster-enrich.svg?branch=master)](https://travis-ci.org/botmasterai/botmaster-enrich)
+[![Coverage Status](https://coveralls.io/repos/github/botmasterai/botmaster-enrich/badge.svg?branch=master)](https://coveralls.io/github/botmasterai/botmaster-enrich?branch=master)
 
 # Enrich NLU contexts
 
