@@ -4,8 +4,10 @@
   "description": "A standardized way to make your bot context-aware. It exposes an API for enrichers which are procedures you can run to add variables to the context before sending to an NLU processor like Watson Conversation, LUIS or API.ai",
   "main": "index.js",
   "scripts": {
-    "docs": "documentation-readme -s \"Botmaster Ware\"",
-    "test": "mocha --recursive ./tests"
+    "test": "istanbul cover _mocha -- --recursive tests",
+    "tests": "mocha --recursive tests",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "docs": "documentation-readme -s \"Botmaster Ware\""
   },
   "repository": {
     "type": "git",
@@ -35,8 +37,10 @@
   "devDependencies": {
     "botmaster": "git+https://github.com/botmasterai/botmaster.git",
     "botmaster-test": "0.0.2",
+    "coveralls": "^2.11.15",
+    "documentation-readme": "^2.1.1",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "should": "^11.1.2",
-    "documentation-readme": "^2.1.1"
+    "should": "^11.1.2"
   }
 }
