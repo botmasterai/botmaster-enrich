@@ -17,7 +17,6 @@ describe('enrich incoming ware', () => {
             update,
             (err) => {
                 if (err) return done(err);
-                console.log(update);
                 update.context.greeting.should.equal('hi');
                 done();
             }

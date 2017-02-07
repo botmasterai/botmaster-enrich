@@ -1,11 +1,7 @@
-const should = require('should');
+require('should');
 const {Enrich} = require('../');
 
 describe('enrich', () => {
-    let enrich;
-    beforeEach( () => {
-        enrich = Enrich();
-    });
 
     it('should say hello world!', done => {
         const enrichers = {
@@ -13,7 +9,8 @@ describe('enrich', () => {
                 controller: () => ({greeting: 'hi'})
             }
         };
-        enrich(enrichers, {}, (err, result) => {
+        const enrich = Enrich({enrichers});
+        enrich({}, (err, result) => {
             if (err) return done(err);
             result.greeting.should.equal('hi');
             done();
@@ -28,7 +25,8 @@ describe('enrich', () => {
                     controller: () => ({greeting: 'hi'})
                 }
             };
-            enrich(enrichers, {}, (err, result) => {
+            const enrich = Enrich({enrichers});
+            enrich({}, (err, result) => {
                 if (err) return done(err);
                 result.greeting.should.equal('hi');
                 done();
@@ -41,7 +39,8 @@ describe('enrich', () => {
                     controller: () => Promise.resolve({greeting: 'hi'})
                 }
             };
-            enrich(enrichers, {}, (err, result) => {
+            const enrich = Enrich({enrichers});
+            enrich({}, (err, result) => {
                 if (err) return done(err);
                 result.greeting.should.equal('hi');
                 done();
@@ -55,7 +54,8 @@ describe('enrich', () => {
                         cb(null, {greeting: 'hi'}))
                 }
             };
-            enrich(enrichers, {}, (err, result) => {
+            const enrich = Enrich({enrichers});
+            enrich({}, (err, result) => {
                 if (err) return done(err);
                 result.greeting.should.equal('hi');
                 done();

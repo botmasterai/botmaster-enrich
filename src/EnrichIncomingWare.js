@@ -5,9 +5,10 @@ const {Enrich} = require('./Enrich');
 
 /**
  * Factory function to generate incoming ware for enrich
- * @param  {Object} enrichers an object of enrichers
- * @param  {String} [sessionPath] dot denoted path find the context in the update. defaults to 'context'
- * @param  {Object} [params] optional additional params to pass to enrichers
+ * @param  {Object} $0 options
+ * @param  {Object} $0.enrichers an object of enrichers
+ * @param  {String} [$0.sessionPath] dot denoted path find the context in the update. defaults to 'context'
+ * @param  {Object} [$0.params] optional additional params to pass to enrichers
  * @return {Function} botmaster middleware
  */
 const EnrichIncomingWare = ({enrichers, sessionPath = 'context', params = {}}) => {
@@ -15,7 +16,7 @@ const EnrichIncomingWare = ({enrichers, sessionPath = 'context', params = {}}) =
     return (bot, update, next) => {
         params.bot = bot;
         params.update = update;
-        const enrich = Enrich(params);
+        const enrich = Enrich({params, enrichers});
         const lensContext = R.lensPath(sessionPath);
         const oldContext = R.compose(
             R.defaultTo({}),
@@ -23,7 +24,7 @@ const EnrichIncomingWare = ({enrichers, sessionPath = 'context', params = {}}) =
         )(update);
         debug(`enrich recieved update: ${util.inspect(update)}`);
         debug(`enrich got context: ${util.inspect(oldContext)}`);
-        enrich(enrichers, oldContext, (err, context) => {
+        enrich(oldContext, (err, context) => {
             if (err) next(err);
             else {
                 debug(`enrich sending new context: ${util.inspect(context)}`);

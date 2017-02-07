@@ -1,9 +1,6 @@
 const R = require('ramda');
 
-/**
- * Turn an object into a list by taking the key and putting it into subobjects using propname
- * @type {function}
- */
+// Turn an object into a list by taking the key and putting it into subobjects using propname
 const listFromObject = R.curry((keyPropName, obj) => {
     const list = [];
     R.mapObjIndexed((value, key) => {
